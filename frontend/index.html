@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEGIS — Autonomous AI Red-Teaming & Attack Intelligence Shield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+
+  <div class="wrap">
+    <!-- Top System Status Bar -->
+    <header class="statusbar">
+      <div class="status-left">
+        <span class="status-dot"></span>
+        <span class="status-brand">AEGIS // CORE SYSTEM ACTIVE</span>
+        <span class="status-sep">|</span>
+        <span id="defense-badge" class="badge-active">DEFENSE SHIELD: ARMED (&lt;5ms)</span>
+      </div>
+      <div class="status-right">
+        <span class="telemetry-item">LEDGER: <span id="hdr-blocks" class="h-green">0</span> BLOCKS</span>
+        <span class="telemetry-item">VULNS: <span id="hdr-vulns" class="h-red">0</span></span>
+        <span class="telemetry-item" id="live-clock">UTC 00:00:00</span>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-label">TOP 0.1% PROJECT // CYBERSECURITY & AI SAFETY TRACK</div>
+      <h1>
+        <span class="h-green">AEGIS</span><br>
+        <span class="hero-subtitle">Autonomous AI Red-Teaming & Attack Intelligence Shield</span>
+      </h1>
+      <p class="hero-sub">
+        // Real-time autonomous AI red-teaming platform. Powered by <span>DSA (Trie, Bloom Filter, Max-Heap)</span>,
+        <span>ML Classification & CVSS 3.1</span>, <span>Sub-5ms Real-Time Guardrail</span>, and
+        <span>Immutable Blockchain Vulnerability Ledger</span>.
+      </p>
+
+      <div class="tech-row">
+        <span class="tchip tc-r">Cybersecurity</span>
+        <span class="tchip tc-g">AI Safety</span>
+        <span class="tchip tc-b">Blockchain (Polygon)</span>
+        <span class="tchip tc-a">Machine Learning</span>
+        <span class="tchip tc-p">LLM / RAG</span>
+        <span class="tchip tc-w">DSA Engine</span>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="tab-overview">
+        <span class="tab-num">01</span> THREAT OVERVIEW
+      </button>
+      <button class="nav-tab" data-tab="tab-scanner">
+        <span class="tab-num">02</span> RED-TEAM SCANNER
+      </button>
+      <button class="nav-tab" data-tab="tab-shield">
+        <span class="tab-num">03</span> REAL-TIME SHIELD (&lt;5MS)
+      </button>
+      <button class="nav-tab" data-tab="tab-ledger">
+        <span class="tab-num">04</span> BLOCKCHAIN CVE LEDGER
+      </button>
+      <button class="nav-tab" data-tab="tab-dsa">
+        <span class="tab-num">05</span> DSA INSPECTOR
+      </button>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="content-area">
+      <div id="tab-overview" class="tab-pane active"></div>
+      <div id="tab-scanner" class="tab-pane"></div>
+      <div id="tab-shield" class="tab-pane"></div>
+      <div id="tab-ledger" class="tab-pane"></div>
+      <div id="tab-dsa" class="tab-pane"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-bar">
+      <span>AEGIS SHIELD v1.0.0 // OPEN DEFENSE FRAMEWORK</span>
+      <span>REST API: <a href="/docs" target="_blank" style="color:var(--green); text-decoration:none;">/docs</a> (FastAPI)</span>
+      <span>TAMPER-PROOF CRYPTOGRAPHIC AUDITING</span>
+    </footer>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>
