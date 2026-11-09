@@ -1,9 +1,0 @@
-{
-  "openai_api_key": "sk-live-test123456789",
-  "gemini_api_key": "AIzaSy-test123456789",
-  "anthropic_api_key": "",
-  "ollama_host": "http://localhost:11434",
-  "guard_block_threshold": 0.8,
-  "auto_anchor_blockchain": true,
-  "scan_schedule": "daily"
-}
