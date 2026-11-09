@@ -51,6 +51,18 @@ flowchart TD
 
 ---
 
+## 🖥️ Platform Interface Gallery
+
+| Operations Dashboard & EU AI Act Posture | Zero-G Force Simulation Attack Lineage |
+|:---:|:---:|
+| ![Dashboard](screenshot_dashboard.png) | ![Attack Lineage](screenshot_lineage.png) |
+| **Defense Monitor & Live Inference Shield** | **Vulnerability Registry & On-Chain Proofs** |
+| ![Defense Monitor](screenshot_defense.png) | ![Vulnerabilities](screenshot_vulnerabilities.png) |
+| **Scan Control & High-Throughput Fuzzer** | **System Settings & Autonomous Cron Daemon** |
+| ![Scan Control](screenshot_scan.png) | ![Settings](screenshot_settings.png) |
+
+---
+
 ## ⚡ Core Capabilities
 
 ### 1. Defense Guard V2 — Machine Learning Inference Firewall
