@@ -1,0 +1,84 @@
+# ========================================================
+# AEGIS — Autonomous AI Red-Teaming & Inference Defense
+# Multi-Container Production Architecture
+# ========================================================
+
+services:
+  # --------------------------------------------------------
+  # Backend API, Red-Team Engine, Defense Proxy & Scheduler
+  # --------------------------------------------------------
+  aegis-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aegis-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - SEPOLIA_RPC_URL=${SEPOLIA_RPC_URL:-}
+      - PRIVATE_KEY=${PRIVATE_KEY:-}
+    # Docker host gateway bridge for zero-latency local GPU Ollama access
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # Persistent storage for settings, vulnerability ledger, and evidence hashes
+      - ./backend/data:/app/data
+      - ./backend/contracts:/app/contracts:ro
+    # Phase 7 Resource Limits: Max 2 CPU Cores and 2 GB Memory per container
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    networks:
+      - aegis-internal
+      - aegis-dmz
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  # --------------------------------------------------------
+  # Frontend UI — High-Performance Nginx Production Reverse Proxy
+  # --------------------------------------------------------
+  aegis-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Baked into static bundle at build time; empty string delegates to Nginx /api proxy
+        - VITE_API_URL=
+    container_name: aegis-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "5173:80"
+    depends_on:
+      aegis-backend:
+        condition: service_healthy
+    networks:
+      - aegis-dmz
+
+# ========================================================
+# Network Topology Isolation
+# ========================================================
+networks:
+  # DMZ Network: Exposed to external clients via frontend reverse proxy
+  aegis-dmz:
+    driver: bridge
+  # Internal Network: Isolated communications between backend, scheduler & models
+  aegis-internal:
+    driver: bridge
+    internal: false

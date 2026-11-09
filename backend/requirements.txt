@@ -1,3 +1,31 @@
-fastapi>=0.110.0
-uvicorn>=0.28.0
-pydantic>=2.6.0
+# AEGIS Backend Dependencies
+# Core
+fastapi==0.115.0
+uvicorn==0.30.0
+pydantic==2.9.0
+
+# DSA & ML
+numpy==1.26.4
+scikit-learn==1.5.1
+xgboost==2.1.0
+
+# Vector store & embeddings
+faiss-cpu==1.8.0
+sentence-transformers==3.0.0
+
+# Blockchain
+web3==7.2.0
+
+# NLP & classifier
+transformers==4.44.0
+torch==2.4.0
+
+# Utilities
+networkx==3.3
+click==8.1.7
+rich==13.8.0
+python-multipart==0.0.9
+
+# Testing
+pytest==8.3.0
+httpx==0.27.0

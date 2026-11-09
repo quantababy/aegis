@@ -1,0 +1,64 @@
+# Environment & Secrets (STRICT ISOLATION)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Hardhat & Solidity
+backend/contracts/cache/
+backend/contracts/artifacts/
+
+# Logs & Temporary Files
+*.log
+backend.log
+ollama.log
+.chrome-*/
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
