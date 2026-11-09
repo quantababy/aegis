@@ -11,6 +11,8 @@ import {
   Shield,
   Activity,
   Terminal,
+  BookOpen,
+  ExternalLink,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -29,6 +31,13 @@ const SECTIONS = [
       { path: '/vulnerabilities', label: 'Vulnerabilities', Icon: ShieldAlert },
       { path: '/defense', label: 'Defense Monitor', Icon: Radio, badge: '<15ms' },
       { path: '/settings', label: 'Settings', Icon: Sliders },
+    ],
+  },
+  {
+    title: 'DOCS & SYSTEM',
+    items: [
+      { path: '/docs', label: 'Swagger API Docs', Icon: BookOpen, badge: 'OpenAPI', external: true },
+      { path: '/health', label: 'System Health', Icon: Activity, badge: 'JSON', external: true },
     ],
   },
 ];
@@ -76,32 +85,57 @@ export default function Sidebar() {
                 {sec.title}
               </p>
             )}
-            {sec.items.map(item => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                end
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 group relative ${
-                    isActive
-                      ? 'bg-gradient-to-r from-green-500/15 via-emerald-500/5 to-transparent text-green-400 border-l-2 border-green-400 shadow-[inset_0_0_12px_rgba(34,197,94,0.1)]'
-                      : 'text-gray-400 hover:bg-aegis-surface hover:text-white border-l-2 border-transparent'
-                  }`
-                }
-              >
-                <item.Icon className="w-4 h-4 flex-shrink-0 transition-transform group-hover:scale-110" />
-                {!collapsed && (
-                  <div className="flex items-center justify-between flex-1">
-                    <span>{item.label}</span>
-                    {item.badge && (
-                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 font-bold">
-                        {item.badge}
+            {sec.items.map(item =>
+              item.external ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-400 hover:bg-aegis-surface hover:text-white transition-all duration-200 group border-l-2 border-transparent"
+                >
+                  <item.Icon className="w-4 h-4 flex-shrink-0 transition-transform group-hover:scale-110" />
+                  {!collapsed && (
+                    <div className="flex items-center justify-between flex-1">
+                      <span className="flex items-center gap-1.5">
+                        {item.label}
+                        <ExternalLink size={10} className="text-gray-500 group-hover:text-green-400" />
                       </span>
-                    )}
-                  </div>
-                )}
-              </NavLink>
-            ))}
+                      {item.badge && (
+                        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </a>
+              ) : (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  end
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 group relative ${
+                      isActive
+                        ? 'bg-gradient-to-r from-green-500/15 via-emerald-500/5 to-transparent text-green-400 border-l-2 border-green-400 shadow-[inset_0_0_12px_rgba(34,197,94,0.1)]'
+                        : 'text-gray-400 hover:bg-aegis-surface hover:text-white border-l-2 border-transparent'
+                    }`
+                  }
+                >
+                  <item.Icon className="w-4 h-4 flex-shrink-0 transition-transform group-hover:scale-110" />
+                  {!collapsed && (
+                    <div className="flex items-center justify-between flex-1">
+                      <span>{item.label}</span>
+                      {item.badge && (
+                        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 font-bold">
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </NavLink>
+              )
+            )}
           </div>
         ))}
       </nav>

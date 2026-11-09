@@ -14,6 +14,8 @@ const SEARCH_ROUTES = [
   { label: 'Vulnerabilities & Proofs', path: '/vulnerabilities', category: 'Audit', icon: '⛓️' },
   { label: 'Live Defense Monitor & Firewall', path: '/defense', category: 'Protection', icon: '🛡️' },
   { label: 'System Settings & Cloud API Keys', path: '/settings', category: 'Config', icon: '⚙️' },
+  { label: 'Swagger API Reference (Docs)', path: '/docs', category: 'Docs', icon: '📖', external: true },
+  { label: 'Live System Health Status', path: '/health', category: 'Monitoring', icon: '💓', external: true },
 ];
 
 const INITIAL_NOTIFICATIONS = [
@@ -92,8 +94,12 @@ export default function TopBar() {
     r.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleSelectRoute = (path) => {
-    navigate(path);
+  const handleSelectRoute = (route) => {
+    if (route.external) {
+      window.open(route.path, '_blank', 'noopener,noreferrer');
+    } else {
+      navigate(route.path);
+    }
     setIsSearchOpen(false);
     setSearchQuery('');
   };
@@ -154,7 +160,7 @@ export default function TopBar() {
                 {filteredRoutes.map((route, idx) => (
                   <button
                     key={idx}
-                    onClick={() => handleSelectRoute(route.path)}
+                    onClick={() => handleSelectRoute(route)}
                     className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-left text-xs hover:bg-aegis-surface transition-colors cursor-pointer group"
                   >
                     <div className="flex items-center gap-2.5">
