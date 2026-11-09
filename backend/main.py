@@ -39,10 +39,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Allow frontend (Vite dev server on :5173, production Nginx on :80, or local Docker) to call backend API
+# Allow frontend (Vite dev server on :5173, production Nginx on :80, local Docker, or Railway domains)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "*",
         "http://localhost:5173",
         "http://localhost:80",
         "http://localhost",
@@ -50,7 +51,7 @@ app.add_middleware(
         "http://127.0.0.1:80",
         "http://127.0.0.1",
     ],
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_origin_regex=r"^https?://.*(railway\.app|localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
