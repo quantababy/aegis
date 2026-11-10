@@ -64,3 +64,9 @@ ollama.log
 Thumbs.db
 .vscode/
 .idea/
+
+# Videos
+*.webm
+*.mp4
+demo_video/
+demo_video_*/
